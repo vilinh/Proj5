@@ -1,8 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import processing.core.*;
 
@@ -84,13 +88,35 @@ public final class VirtualWorld extends PApplet
         Point pressed = mouseToPoint(mouseX, mouseY);
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
 
-        Optional<Entity> entityOptional = world.getOccupant(pressed);
-        if (entityOptional.isPresent())
-        {
-            Entity entity = entityOptional.get();
-            System.out.println(entity.getId() + ": " + entity.getClass() + " : ");
-        }
+        /*List<Point> neighbors = new ArrayList<>();
+        neighbors.add(pressed);
+        neighbors.add(new Point(pressed.x + 1, pressed.y));
+        neighbors.add(new Point(pressed.x - 1, pressed.y));
+        neighbors.add(new Point(pressed.x, pressed.y + 1));
+        neighbors.add(new Point(pressed.x, pressed.y - 1));
 
+        for (Point p : neighbors){
+            world.setBackground(p,
+                    new Background("lava", imageStore.getImageList("lava")));
+        }*/
+
+        Stream<Point> neighbors =
+                        Stream.<Point>builder()
+                                .add(pressed)
+                                .add(new Point(pressed.x, pressed.y - 1))
+                                .add(new Point(pressed.x, pressed.y + 1))
+                                .add(new Point(pressed.x - 1, pressed.y))
+                                .add(new Point(pressed.x + 1, pressed.y))
+                                .add(new Point(pressed.x + 1, pressed.y + 1))
+                                .add(new Point(pressed.x - 1, pressed.y - 1))
+                                .add(new Point(pressed.x - 1, pressed.y + 1))
+                                .add(new Point(pressed.x + 1, pressed.y - 1))
+                                .build();
+
+        for (Point p : neighbors.collect(Collectors.toList())){
+            world.setBackground(p,
+                    new Background("lava", imageStore.getImageList("lava")));
+        }
     }
 
     private Point mouseToPoint(int x, int y)
