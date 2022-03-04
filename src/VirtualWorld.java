@@ -88,18 +88,6 @@ public final class VirtualWorld extends PApplet
         Point pressed = mouseToPoint(mouseX, mouseY);
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
 
-        /*List<Point> neighbors = new ArrayList<>();
-        neighbors.add(pressed);
-        neighbors.add(new Point(pressed.x + 1, pressed.y));
-        neighbors.add(new Point(pressed.x - 1, pressed.y));
-        neighbors.add(new Point(pressed.x, pressed.y + 1));
-        neighbors.add(new Point(pressed.x, pressed.y - 1));
-
-        for (Point p : neighbors){
-            world.setBackground(p,
-                    new Background("lava", imageStore.getImageList("lava")));
-        }*/
-
         Stream<Point> neighbors =
                         Stream.<Point>builder()
                                 .add(pressed)
@@ -113,10 +101,24 @@ public final class VirtualWorld extends PApplet
                                 .add(new Point(pressed.x + 1, pressed.y - 1))
                                 .build();
 
+        boolean spawn = true;
         for (Point p : neighbors.collect(Collectors.toList())){
-            world.setBackground(p,
-                    new Background("lava", imageStore.getImageList("lava")));
+            world.setBackground(p, new Background("lava", imageStore.getImageList("lava")));
+            if (!world.isOccupied(p) && spawn){
+                Entity entity = Factory.createStump("stump", p, imageStore.getImageList("stump"));
+                world.addEntity(entity);
+                spawn = false;
+            }
         }
+
+
+        /*Optional<Entity> entityOptional = world.getOccupant(pressed);
+        if (entityOptional.isPresent())
+        {
+            Entity entity = entityOptional.get();
+            System.out.println(entity.getId() + ": " + entity.getClass());
+
+        }*/
     }
 
     private Point mouseToPoint(int x, int y)
