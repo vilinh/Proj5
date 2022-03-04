@@ -173,7 +173,7 @@ public final class Functions
                     Integer.parseInt(properties[DUDE_ACTION_PERIOD]),
                     Integer.parseInt(properties[DUDE_ANIMATION_PERIOD]),
                     Integer.parseInt(properties[DUDE_LIMIT]),
-                    imageStore.getImageList(DUDE_KEY));
+                    imageStore.getImageList("nezuko"));
             world.tryAddEntity(entity);
         }
 
