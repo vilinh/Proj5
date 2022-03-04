@@ -1,0 +1,24 @@
+Functions I could have left in the Functions class include the math functions that don't take in
+a particular object as a parameter like clamp(), getNumFromRange(), and distanceSquared().
+However, I moved clamp() to WorldView because it is the only class that uses it
+and distanceSquared() to WorldModel because only WorldModel methods use it. For the same reason,
+I moved getNumFromRange() to Entity because its objects/methods are the only ones that use it.
+
+I could have left nearestEntity() in Functions because it doesn't take in a parameter that is an object
+class (except Point), but I chose to move it into WorldModel because it is only used by findNearest() which
+takes in WorldModel as one of its parameters and uses WorldModel's data, and therefore is in WorldModel.
+
+I also could have left setAlpha() in Functions because it doesn't take in any object classes as parameters,
+but I put it in ImageStore because it is only used by processImageLine() that is also in ImageStore.
+
+For adjacent(), even though its parameters are objects of the Point, since its instance variables are
+still public because it's acting as a constant value, I placed it in Entity because only the methods
+in Entity are the ones using it.
+
+Functions left in Functions class:
+I left load() and loadImage() because they read input from a file. I left processLine() because it doesn't
+act on any parameters it takes in and does not have a designated class yet. All the parse methods are also
+left in Functions because they do not have a designated class, and I feel like they
+could all be grouped together under one. The parameters they do take in all also have
+an equal amount of usage within the function. All create* methods are left in Functions because they
+do not use the data of their parameters, just return objects, and are used by their respective parse methods.
