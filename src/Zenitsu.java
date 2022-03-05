@@ -73,7 +73,6 @@ public class Zenitsu extends Mover {
 
     public Point nextPosition(WorldModel world, Point destPos)
     {
-//        PathingStrategy strategy = new SingleStepPathingStrategy();
         AStarPathingStrategy strategy = new AStarPathingStrategy();
 
         Predicate<Point> pass = p -> !world.isOccupied(p) && world.withinBounds(p);

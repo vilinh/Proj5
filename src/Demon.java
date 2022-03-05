@@ -59,8 +59,6 @@ public class Demon extends Mover {
             EventScheduler scheduler)
     {
         if (Mover.adjacent(getPosition(), target.getPosition())) {
-//            world.removeEntity(target);
-//            scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
@@ -80,7 +78,6 @@ public class Demon extends Mover {
 
     public Point nextPosition(WorldModel world, Point destPos)
     {
-//        PathingStrategy strategy = new SingleStepPathingStrategy();
         AStarPathingStrategy strategy = new AStarPathingStrategy();
 
         Predicate<Point> pass = p -> !world.isOccupied(p) && world.withinBounds(p);
