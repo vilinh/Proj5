@@ -154,7 +154,7 @@ public final class Functions
                     Integer.parseInt(properties[Factory.SAPLING_ROW]));
             String id = properties[Factory.SAPLING_ID];
             int health = Integer.parseInt(properties[Factory.SAPLING_HEALTH]);
-            Entity entity = new Sapling(id, pt, imageStore.getImageList(Factory.SAPLING_KEY),
+            Entity entity = new Sapling(id, pt, imageStore.getImageList("cakespawn"),
                     Factory.SAPLING_ACTION_ANIMATION_PERIOD, Factory.SAPLING_ACTION_ANIMATION_PERIOD, health, Factory.SAPLING_HEALTH_LIMIT);
             world.tryAddEntity(entity);
         }
@@ -224,7 +224,7 @@ public final class Functions
                     Integer.parseInt(properties[TREE_ACTION_PERIOD]),
                     Integer.parseInt(properties[TREE_ANIMATION_PERIOD]),
                     Integer.parseInt(properties[TREE_HEALTH]),
-                    imageStore.getImageList(TREE_KEY));
+                    imageStore.getImageList("cake"));
             world.tryAddEntity(entity);
         }
 

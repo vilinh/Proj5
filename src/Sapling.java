@@ -37,7 +37,7 @@ public class Sapling extends Plant {
         if (getHealth() <= 0) {
             Entity stump = Factory.createStump(getId(),
                     getPosition(),
-                    imageStore.getImageList(Functions.STUMP_KEY));
+                    imageStore.getImageList("cherry"));
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
@@ -51,7 +51,7 @@ public class Sapling extends Plant {
                     getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN),
                     getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN),
                     getNumFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN),
-                    imageStore.getImageList(Functions.TREE_KEY));
+                    imageStore.getImageList("cake"));
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);

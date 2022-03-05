@@ -29,7 +29,7 @@ public class Fairy extends Mover {
 
             if (moveTo(world, fairyTarget.get(), scheduler)) {
                 Sapling sapling = Factory.createSapling("sapling_" + getId(), tgtPos,
-                        imageStore.getImageList(Factory.SAPLING_KEY));
+                        imageStore.getImageList("cakespawn"));
 
                 world.addEntity(sapling);
                 sapling.scheduleActions(scheduler, world, imageStore);

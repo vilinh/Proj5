@@ -15,7 +15,7 @@ public class Tree extends Plant {
         if (getHealth() <= 0) {
             Entity stump = Factory.createStump(getId(),
                     getPosition(),
-                    imageStore.getImageList(Functions.STUMP_KEY));
+                    imageStore.getImageList("cherry"));
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);

@@ -103,7 +103,7 @@ public final class VirtualWorld extends PApplet
 
         boolean spawn = true;
         for (Point p : neighbors.collect(Collectors.toList())){
-            world.setBackground(p, new Background("lava", imageStore.getImageList("lava")));
+            world.setBackground(p, new Background("darkgrass", imageStore.getImageList("darkgrass")));
 
             if (!world.isOccupied(p) && spawn){
                 Demon entity = Factory.createDemon("1", p, 787, 100, imageStore.getImageList("demon"));

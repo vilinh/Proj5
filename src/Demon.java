@@ -29,15 +29,7 @@ public class Demon extends Mover {
                 world.findNearest(getPosition(), new ArrayList<>(Arrays.asList(DudeNotFull.class)));
 
         if (demonTarget.isPresent()) {
-            Point tgtPos = demonTarget.get().getPosition();
-
-            if (moveTo(world, demonTarget.get(), scheduler)) {
-//                Sapling sapling = Factory.createSapling("sapling_" + getId(), tgtPos,
-//                        imageStore.getImageList(Factory.SAPLING_KEY));
-//
-//                world.addEntity(sapling);
-//                sapling.scheduleActions(scheduler, world, imageStore);
-            }
+            moveTo(world, demonTarget.get(), scheduler);
         }
 
         if (!transform(world, scheduler, imageStore)) {
