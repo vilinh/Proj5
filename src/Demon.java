@@ -8,14 +8,18 @@ import java.util.function.Predicate;
 
 public class Demon extends Mover {
 
+    private int health;
+
     public Demon(
             String id,
             Point position,
             List<PImage> images,
             int actionPeriod,
-            int animationPeriod)
+            int animationPeriod,
+            int health)
     {
         super(id, position, images, animationPeriod, actionPeriod);
+        this.health = health;
     }
 
     public void executeActivity(WorldModel world,
@@ -36,10 +40,27 @@ public class Demon extends Mover {
             }
         }
 
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                getActionPeriod());
+        if (!transform(world, scheduler, imageStore)) {
+            scheduler.scheduleEvent(this,
+                    Factory.createActivityAction(this, world, imageStore),
+                    getActionPeriod());
+        }
+
     }
+
+    public boolean transform(WorldModel world,
+                             EventScheduler scheduler,
+                             ImageStore imageStore) {
+        if (getHealth() <= 0) {
+
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+
+            return true;
+        }
+        return false;
+    }
+
     public boolean moveTo(
             WorldModel world,
             Entity target,
@@ -81,6 +102,10 @@ public class Demon extends Mover {
         return path.get(0);
     }
 
-
-
+    public int getHealth(){
+        return health;
+    }
+    public void setHealth(int h){
+        health += h;
+    }
 }

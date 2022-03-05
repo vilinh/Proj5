@@ -106,7 +106,6 @@ public final class VirtualWorld extends PApplet
             world.setBackground(p, new Background("lava", imageStore.getImageList("lava")));
 
             if (!world.isOccupied(p) && spawn){
-//                Fairy entity = Factory.createFairy("1", p, 5, 4, imageStore.getImageList("fairy"));
                 Demon entity = Factory.createDemon("1", p, 787, 100, imageStore.getImageList("demon"));
                 world.addEntity(entity);
                 entity.scheduleActions(scheduler, world, imageStore);
@@ -120,23 +119,15 @@ public final class VirtualWorld extends PApplet
                 world.removeEntity(entity);
                 scheduler.unscheduleAllEvents(entity);
 
-                Zenitsu newEntity = Factory.createZenitsu("zenitsu", p, 51,
+                Zenitsu newEntity = Factory.createZenitsu("zenitsu", p, 300,
                         51, imageStore.getImageList("zenitsu"));
                 world.addEntity(newEntity);
                 newEntity.scheduleActions(scheduler, world, imageStore);
-                //System.out.println(entity.getId() + ": " + entity.getClass());
 
             }
 
         }
 
-        /*Optional<Entity> entityOptional = world.getOccupant(pressed);
-        if (entityOptional.isPresent())
-        {
-            Entity entity = entityOptional.get();
-            System.out.println(entity.getId() + ": " + entity.getClass());
-
-        }*/
     }
 
     private Point mouseToPoint(int x, int y)

@@ -25,14 +25,17 @@ public class Zenitsu extends Mover {
                 world.findNearest(getPosition(), new ArrayList<>(Arrays.asList(Demon.class)));
 
         if (zenTarget.isPresent()) {
-            Point tgtPos = zenTarget.get().getPosition();
+            moveTo(world, zenTarget.get(), scheduler);
+        }
+        else{
+            ArrayList dnf = new ArrayList<>(Arrays.asList(DudeNotFull.class));
+            ArrayList df = new ArrayList<>(Arrays.asList(DudeFull.class));
+            dnf.addAll(df);
+            Optional<Entity> zenTarget1 =
+                    world.findNearest(getPosition(), dnf);
 
-            if (moveTo(world, zenTarget.get(), scheduler)) {
-//                Sapling sapling = Factory.createSapling("sapling_" + getId(), tgtPos,
-//                        imageStore.getImageList(Factory.SAPLING_KEY));
-//
-//                world.addEntity(sapling);
-//                sapling.scheduleActions(scheduler, world, imageStore);
+            if (zenTarget1.isPresent()) {
+                moveTo(world, zenTarget1.get(), scheduler);
             }
         }
 
@@ -46,8 +49,11 @@ public class Zenitsu extends Mover {
             EventScheduler scheduler)
     {
         if (Mover.adjacent(getPosition(), target.getPosition())) {
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
+
+            if (target instanceof Demon){
+                Demon t = (Demon) target;
+                t.setHealth(-1);
+            }
             return true;
         }
         else {

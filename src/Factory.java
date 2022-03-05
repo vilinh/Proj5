@@ -53,7 +53,7 @@ public class Factory {
             List<PImage> images)
     {
         return new Demon(id, position, images,
-                actionPeriod, animationPeriod);
+                actionPeriod, animationPeriod, 3);
     }
 
     public static Zenitsu createZenitsu(
