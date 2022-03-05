@@ -104,13 +104,29 @@ public final class VirtualWorld extends PApplet
         boolean spawn = true;
         for (Point p : neighbors.collect(Collectors.toList())){
             world.setBackground(p, new Background("lava", imageStore.getImageList("lava")));
+
             if (!world.isOccupied(p) && spawn){
-                Entity entity = Factory.createStump("stump", p, imageStore.getImageList("stump"));
+                Fairy entity = Factory.createFairy("1", p, 5, 4, imageStore.getImageList("fairy"));
                 world.addEntity(entity);
+                entity.scheduleActions(scheduler, world, imageStore);
                 spawn = false;
             }
-        }
 
+            Optional<Entity> entityOptional = world.getOccupant(p);
+            if (entityOptional.isPresent() && world.getOccupancyCell(p).getClass() == Tree.class)
+            {
+                Entity entity = entityOptional.get();
+                world.removeEntity(entity);
+
+                DudeNotFull newEntity = Factory.createDudeNotFull("nezuko", p, 5,
+                        6, 4, imageStore.getImageList("nezuko"));
+                world.addEntity(newEntity);
+                newEntity.scheduleActions(scheduler, world, imageStore);
+                //System.out.println(entity.getId() + ": " + entity.getClass());
+
+            }
+
+        }
 
         /*Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent())
