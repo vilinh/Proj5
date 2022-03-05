@@ -106,20 +106,22 @@ public final class VirtualWorld extends PApplet
             world.setBackground(p, new Background("lava", imageStore.getImageList("lava")));
 
             if (!world.isOccupied(p) && spawn){
-                Fairy entity = Factory.createFairy("1", p, 5, 4, imageStore.getImageList("fairy"));
+//                Fairy entity = Factory.createFairy("1", p, 5, 4, imageStore.getImageList("fairy"));
+                Demon entity = Factory.createDemon("1", p, 787, 100, imageStore.getImageList("demon"));
                 world.addEntity(entity);
                 entity.scheduleActions(scheduler, world, imageStore);
                 spawn = false;
             }
 
             Optional<Entity> entityOptional = world.getOccupant(p);
-            if (entityOptional.isPresent() && world.getOccupancyCell(p).getClass() == Tree.class)
+            if (entityOptional.isPresent() && world.getOccupancyCell(p) instanceof Dudes)
             {
                 Entity entity = entityOptional.get();
                 world.removeEntity(entity);
+                scheduler.unscheduleAllEvents(entity);
 
-                DudeNotFull newEntity = Factory.createDudeNotFull("nezuko", p, 5,
-                        6, 4, imageStore.getImageList("nezuko"));
+                Zenitsu newEntity = Factory.createZenitsu("zenitsu", p, 51,
+                        51, imageStore.getImageList("zenitsu"));
                 world.addEntity(newEntity);
                 newEntity.scheduleActions(scheduler, world, imageStore);
                 //System.out.println(entity.getId() + ": " + entity.getClass());

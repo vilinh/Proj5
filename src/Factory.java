@@ -45,6 +45,28 @@ public class Factory {
         return new Stump(id, position, images);
     }
 
+    public static Demon createDemon(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Demon(id, position, images,
+                actionPeriod, animationPeriod);
+    }
+
+    public static Zenitsu createZenitsu(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Zenitsu(id, position, images,
+                actionPeriod, animationPeriod);
+    }
+
     // health starts at 0 and builds up until ready to convert to Tree
     public static Sapling createSapling(
             String id,
