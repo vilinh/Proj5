@@ -1,0 +1,22 @@
+1. How to Trigger the Event:
+   Click on any tile to trigger the event.
+2. What should happen when the event is triggered:
+   The immediate tiles including the tile you clicked, if it is a background tile will
+   turn into a lava tile, instead of the normal background. The click will also trigger
+   a demon to spawn. If Nezuko is in the vicinity of the changed tiles, she will transform.
+3. The affected entity (Nezuko) should transform into Zenitsu who will chase
+   demons and try to kill them. If there are no demons left, he will chase Nezuko.
+4. The new entity are demon entities. The demon entities should be chasing Nezuko.
+5. 
+Kim-Linh Vu
+- background change on click
+- transform affected entities on click
+- Nezuko graphics
+- Zenitsu graphics and fight/chase logic
+- demon health
+  Vi-Linh Vu
+- demon graphics and demon chase
+- created demons entity
+- create demon on click
+- created Zenitsu entity
+- cake graphics
