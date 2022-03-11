@@ -30,6 +30,9 @@ public class Demon extends Mover {
 
         if (demonTarget.isPresent()) {
             moveTo(world, demonTarget.get(), scheduler);
+        } else {
+            demonTarget = world.findNearest(getPosition(), new ArrayList<>(Arrays.asList(Tree.class)));
+            moveTo(world, demonTarget.get(), scheduler);
         }
 
         if (!transform(world, scheduler, imageStore)) {
@@ -59,6 +62,10 @@ public class Demon extends Mover {
             EventScheduler scheduler)
     {
         if (Mover.adjacent(getPosition(), target.getPosition())) {
+
+            if (target instanceof Tree){
+                world.removeEntity(target);
+            }
             return true;
         }
         else {

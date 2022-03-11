@@ -6,7 +6,8 @@
    a demon to spawn. If Nezuko is in the vicinity of the changed tiles, she will transform.
 3. The affected entity (Nezuko) should transform into Zenitsu who will chase
    demons and try to kill them. If there are no demons left, he will chase Nezuko.
-4. The new entity are demon entities. The demon entities should be chasing Nezuko.
+4. The new entity are demon entities. The demon entities should be chasing Nezuko. If there are no
+Nezukos to chase, the demons will start killing the cakes completely, meaning they cannot respawn.
 5. 
 Kim-Linh Vu
 - background change on click
@@ -18,5 +19,6 @@ Kim-Linh Vu
 - demon graphics and demon chase
 - created demons entity
 - create demon on click
+- made demons kill cakes if no Nezuko present
 - created Zenitsu entity
 - cake graphics
